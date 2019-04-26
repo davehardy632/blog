@@ -14,6 +14,7 @@ describe "User creates new article" do
       fill_in 'article[body]', with: "This is the body of the new article I am currently writing, it will go down is histroy as the best article ever written."
       click_on "Create Article"
 
+      expect(page).to have_content("Article New Article has been Created")
       expect(page).to have_content("New Article")
       expect(page).to have_content("This is the body of the new article I am currently writing, it will go down is histroy as the best article ever written.")
     end
