@@ -12,11 +12,14 @@ describe "User creates new article" do
 
       fill_in 'article[title]', with: "New Article"
       fill_in 'article[body]', with: "This is the body of the new article I am currently writing, it will go down is histroy as the best article ever written."
+      fill_in 'article[tag_list]', with: 'ruby, technology'
       click_on "Create Article"
 
       expect(page).to have_content("Article New Article has been Created")
       expect(page).to have_content("New Article")
       expect(page).to have_content("This is the body of the new article I am currently writing, it will go down is histroy as the best article ever written.")
+      expect(page).to have_content("ruby")
+      expect(page).to have_content("technology")
     end
   end
 end
