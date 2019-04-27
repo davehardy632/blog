@@ -39,6 +39,7 @@ describe "Article show page" do
 
       fill_in 'comment[author_name]', with: "John Snow"
       fill_in 'comment[body]', with: "Winter is coming, I am a man of the nights watch."
+      click_on 'Submit'
 
       expect(current_path).to eq(article_path(article))
       expect(page).to have_content("Post a Comment")
