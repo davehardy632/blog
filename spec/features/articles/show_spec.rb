@@ -46,5 +46,10 @@ describe "Article show page" do
       expect(page).to have_content("John Snow")
       expect(page).to have_content("Winter is coming, I am a man of the nights watch.")
     end
+    it "tag names are links to tag show page" do
+      article = Article.create!(title: "Game of Thrones Review", body: "Every character on the show will die")
+      tag = article.tags.create!(name: "television")
+
+    end
   end
 end
