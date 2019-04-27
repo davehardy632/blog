@@ -2,11 +2,11 @@
 
 <%= form_for [@article, @comment] do |f| %>
 <ul>
-  <li><%= f.label :author_name %></li><br/>
+  <li><%= f.label :author_name, "Your Name" %></li><br/>
   <li><%= f.text_field :author_name %></li>
 </ul>
 <ul>
-  <li><%= f.label :body %></li><br/>
+  <li><%= f.label :body, "Your Comment" %></li><br/>
   <li><%= f.text_area :body %></li>
 </ul>
 <ul>
