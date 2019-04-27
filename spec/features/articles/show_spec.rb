@@ -40,11 +40,29 @@ describe "Article show page" do
       fill_in 'comment[author_name]', with: "John Snow"
       fill_in 'comment[body]', with: "Winter is coming, I am a man of the nights watch."
       click_on 'Submit'
-save_and_open_page
+
       expect(current_path).to eq(article_path(article))
       expect(page).to have_content("Post a Comment")
       expect(page).to have_content("John Snow")
       expect(page).to have_content("Winter is coming, I am a man of the nights watch.")
+    end
+    it "tag names are links to tag show page" do
+      article = Article.create!(title: "Game of Thrones Review", body: "Every character on the show will die")
+      tag = article.tags.create!(name: "television")
+      article_2 = tag.articles.create!(title: "Family Guy Review", body: "This show is on television", tag_list: "television")
+
+
+      visit article_path(article)
+
+      click_link tag.name
+
+      expect(current_path).to eq(tag_path(tag))
+      expect(page).to have_content(tag.name)
+      expect(page).to have_content(article_2.title)
+
+      click_link article.title
+
+      expect(current_path).to eq(article_path(article))
     end
   end
 end
