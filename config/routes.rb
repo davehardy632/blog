@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :tags, only: [:show]
+  resources :tags, only: [:index, :show, :destroy]
 end
