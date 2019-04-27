@@ -49,7 +49,20 @@ describe "Article show page" do
     it "tag names are links to tag show page" do
       article = Article.create!(title: "Game of Thrones Review", body: "Every character on the show will die")
       tag = article.tags.create!(name: "television")
+      article_2 = tag.articles.create!(title: "Family Guy Review", body: "This show is on television", tag_list: "television")
 
+
+      visit article_path(article)
+
+      click_link tag.name
+
+      expect(current_path).to eq(tag_path(tag))
+      expect(page).to have_content(tag.name)
+      expect(page).to have_content(article_2.title)
+
+      click_link article.title
+
+      expect(current_path).to eq(article_path(article))
     end
   end
 end
