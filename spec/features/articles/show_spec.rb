@@ -32,5 +32,18 @@ describe "Article show page" do
       expect(page).to have_content(comment_2.author_name)
       expect(page).to have_content(comment_2.body)
     end
+    it "They fill in a comment form" do
+      article = Article.create(title: "Game of Thrones Review", body: "Everyone on the show is going to die")
+
+      visit article_path(article)
+
+      fill_in 'comment[author_name]', with: "John Snow"
+      fill_in 'comment[body]', with: "Winter is coming, I am a man of the nights watch."
+
+      expect(current_path).to eq(article_path(article))
+      expect(page).to have_content("Post a Comment")
+      expect(page).to have_content("John Snow")
+      expect(page).to have_content("Winter is coming, I am a man of the nights watch.")
+    end
   end
 end
